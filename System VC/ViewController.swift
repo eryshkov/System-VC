@@ -8,8 +8,9 @@
 
 import UIKit
 import SafariServices
+import MessageUI
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
@@ -69,7 +70,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func emailButtonPressed(_ sender: UIButton) {
-        
+        if !MFMailComposeViewController.canSendMail() {
+            
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageView.image = selectedImage
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 
