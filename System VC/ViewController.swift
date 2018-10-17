@@ -70,9 +70,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func emailButtonPressed(_ sender: UIButton) {
-        if !MFMailComposeViewController.canSendMail() {
-            
-        }
+        guard MFMailComposeViewController.canSendMail() else {return}
+        
+        let composeVC = MFMailComposeViewController()
+        composeVC.delegate = self
+        
+        composeVC.setSubject("Image")
+        let image = UIImage.jpegData(imageView.image!)(compressionQuality: 1.0)!
+        composeVC.addAttachmentData(image, mimeType: "image/jpeg", fileName: "attachment.jpg")
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
