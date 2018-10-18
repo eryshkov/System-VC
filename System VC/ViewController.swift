@@ -73,7 +73,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard MFMailComposeViewController.canSendMail() else {return}
         
         let composeVC = MFMailComposeViewController()
-        composeVC.delegate = self
+        composeVC.mailComposeDelegate = self
         
         composeVC.setSubject("Image")
         let image = UIImage.jpegData(imageView.image!)(compressionQuality: 1.0)!
