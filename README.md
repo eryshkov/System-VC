@@ -5,7 +5,7 @@ System View Controller home work Swift Developer Stage 3
 
 ## Main functionality
 * uses system VCs for:
- * camera
- * e-mail
- * share anywhere
- * safari
+ - camera
+ - e-mail
+ - share anywhere
+ - safari
